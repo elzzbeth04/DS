@@ -1,0 +1,13 @@
+void delete ()
+{
+  
+        struct node *temp = first;
+       
+            first = first->next;
+            free(temp);
+            printf("\nElement Deleted! \n");
+        display();
+       
+       
+    
+}

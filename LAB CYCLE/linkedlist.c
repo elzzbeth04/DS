@@ -166,7 +166,7 @@ void deletenode(int data)
                 temp = temp->next;
             }
 
-            if (temp->next != NULL)
+            if (temp->next != NULL)// this suggests that the node has reched the end and the elment has not been found till now
             {
                 del = temp->next;
                 temp->next = temp->next->next;
@@ -201,7 +201,7 @@ void deleteindex(int index)
             {
                 temp = temp->next;
             }
-            if (temp != NULL && temp->next != NULL)
+            if (temp != NULL && temp->next != NULL)//if user has given data =3 for an array of size 2
             {
                 del = temp->next;
                 temp->next = temp->next->next;
