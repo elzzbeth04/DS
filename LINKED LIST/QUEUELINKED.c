@@ -1,4 +1,4 @@
-include <stdio.h>
+#include <stdio.h>
 #include<stdlib.h>
 struct node
 {
@@ -10,7 +10,7 @@ struct node *front=NULL;
 struct node *temp=NULL;
 struct node *createnode(int data)
 {
-	struct node newnode=(struct node*)malloc((sizeof(struct node)));
+	struct node newnode=(struct node *)malloc((sizeof(struct node)));
 	if(newnode==NULL)
 	{
 		printf("there was an error");
