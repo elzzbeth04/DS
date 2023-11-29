@@ -116,18 +116,33 @@ void deletefront()
 		free(temp);
 	}
 }
-void display()
-{
-	struct node *temp=first;
-	while(temp->next!=first)
-	{
-	printf("%d->",temp->data);
-	temp=temp->next;
-	//printf("\n");
-	if(temp->next->next==first)
-	{printf("%d->",temp->next->data);}
-	}
-	}
+void display() {
+    if (first == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+
+    struct node *temp = first;
+
+    do {
+        printf("%d->", temp->data);
+        temp = temp->next;
+    } while (temp != first);
+
+    printf("\n");
+}
+// void display()
+// {
+// 	struct node *temp=first;
+// 	while(temp->next!=first)
+// 	{
+// 	printf("%d->",temp->data);
+// 	temp=temp->next;
+// 	//printf("\n");
+// 	if(temp->next->next==first)
+// 	{printf("%d->",temp->next->data);}
+// 	}
+// 	}
 	
 void main()
 {
