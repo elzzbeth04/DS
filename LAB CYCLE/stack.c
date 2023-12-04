@@ -1,12 +1,37 @@
+// Online C compiler to run C program online
 #include <stdio.h>
-#define max 100
-int push(int stack[100],int top);
-int pop(int stack[100],int top);
-void peak(int stack[max],int top);
+#define max 1
 
+int stack[max],top=-1;
+void push()
+{
+    int data;
+    printf("\n input");
+    scanf("%d",&data);
+    if(top==max-1)
+    printf("\nover");
+    else
+    {
+        stack[++top]=data;
+    }
+}
+int pop()
+{
+    int item;
+    if(top<0)
+    {
+        printf("underflow");
+        return 0;
+    }
+    else
+    {
+        item=stack[top--];
+        return item;
+    }
+}
 void main()
 {
-	int stack[max],c,val,top=-1;
+	int c,val;
 	char choice;
 	
 	
@@ -21,22 +46,25 @@ void main()
 	{
 	case 1:
 	printf("POP OPERATION");
+	int popped=pop();
+	printf("\npopped=%d",popped);
 	//printf("input the value to e popped");
 	//scanf("%d",&val);
-	top=pop(stack,top);
+	
 	break;
 	
 	case 2:
 	printf("PUSH OPERATION");
+    push();
 
-	top=push(stack,top);
 	break;
 	
 	case 3:
 	printf("PEAK OPERATION");
+	printf("%d",stack[top]);
 	//printf("input the value to be pushed");
 	//scanf("%d",&val);
-	peak(stack,top);
+	
 	break;
 	
 	default:
@@ -48,46 +76,3 @@ void main()
 	
 	
 }
-
-	int pop(int stack[100],int top)
-	{
-	if (top<0)
-	printf("\nunderflow\n");
-	else
-	{
-	int item=stack[top];
-	top--;
-	printf("\npopped element will be %d",item);
-	}
-	return top;
-	
-	}
-	
-	int push(int stack[100],int top)
-	{
-	int item,i;
-	printf("\ninput the value to be pushed");
-	scanf("%d",&item);
-	if (top==max-1)
-	printf("\noverflow");
-	else
-	stack[++top]=item;
-	
-	printf("\nnew stack will be\n");
-	for(i=0;i<=top;i++)
-	{
-	printf("%d \n",stack[i]);
-	}
-	return top;
-	
-	
-	
-	}
-	
-	void peak(int stack[max],int top)
-	{
-	if (top==-1)
-	printf("\nunderflow");
-	else 
-	printf("%d",stack[top]);
-	}

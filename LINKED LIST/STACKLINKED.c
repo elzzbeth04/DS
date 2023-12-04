@@ -9,7 +9,7 @@ struct node *top=NULL;
 struct node *temp=NULL;
 struct node *createnode(int data)
 {
-	struct node newnode= (struct node*)malloc((sizeof(struct node)));
+	struct node *newnode= (struct node*)malloc((sizeof(struct node)));
 	if(newnode==NULL)
 	{
 		printf("there was an error");
@@ -24,13 +24,13 @@ struct node *createnode(int data)
 }
 void push(int data)
 {
-	struct node newnode=(struct node)malloc((sizeof(struct node)));
+	struct node *newnode=(struct node*)malloc((sizeof(struct node)));
 	
 	newnode=createnode(data);
 	if (top==NULL)
 	{
 		top=newnode;
-		newnode=newnode->next;
+		//newnode=newnode->next;
 	}
 	else
 	{

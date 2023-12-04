@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -52,7 +53,7 @@ void display()
         printf("Head");
         while (temp != NULL)
         {
-            printf("%d", temp->data);
+            printf("%d\t->", temp->data);
             temp = temp->next;
         }
     }
@@ -145,21 +146,18 @@ void addatposition(int index)
 
 void deletenode(int data)
 {
-    if (first == NULL)
+    struct node *temp=first,*del=NULL;
+    if(first->data==data)
     {
-        printf("List is empty\n");
+        del=first;
+        first=first->next;
+        free(del);
+        printf("\ndeleted");
+        
     }
+    else if(first==NULL)
+    printf("empty");
     else
-    {
-        struct node *temp = first, *del = NULL;
-        if (first->data == data)
-        {
-            del = first;
-            first = first->next;
-            free(del);
-            printf("Element is deleted\n");
-        }
-        else
         {
             while (temp->next != NULL && temp->next->data != data)
             {
@@ -178,106 +176,100 @@ void deletenode(int data)
                 printf("Element not found\n");
             }
         }
-    }
+    
+    
 }
-
 void deleteindex(int index)
 {
+   
     int i;
-    struct node *del=NULL;
-    if (first == NULL)
-        printf("List is empty\n");
+   struct node *del=NULL;
+    if(first==NULL)
+    printf("\n not");
+    else if(index==0)
+    {
+        del=first;
+        first=first->next;
+        free(del);
+    }
     else
     {
-        struct node *temp = first, *del = NULL;
-        if (index == 0)
+         struct node *temp=first;
+        for(int i=1;i<index &&temp!=NULL;i++)
         {
-            del = first;
-            first = first->next;
+            temp=temp->next;
+        }
+        if(temp!=NULL)
+        {
+            del=temp->next;
+            temp->next=temp->next->next;
             free(del);
         }
         else
-        {
-             struct node *temp=first;
-            for (i = 1; i < index && temp != NULL; i++)
-            {
-                temp = temp->next;
-            }
-            if (temp != NULL && temp->next != NULL)
-            {
-                del = temp->next;
-                temp->next = temp->next->next;
-                free(del);
-            }
-            else
-            {
-                printf("Invalid index\n");
-            }
-        }
+        printf("not");
+        
     }
+    
 }
-
 void deletesmall()
 {
-    if (first == NULL)
+    if(first==NULL)
     {
-        printf("List is empty\n");
+        printf("empty");
+        
     }
     else
     {
-        int smallest = first->data;
-        struct node *dlttemp = first;
-        while (dlttemp != NULL)
+      int  smallest=first->data;
+        struct node *dtemp=first;
+        while(dtemp!=NULL)
         {
-            if (smallest > dlttemp->data)
+            if(smallest>dtemp->data)
             {
-                smallest = dlttemp->data;
+                smallest=dtemp->data;
             }
-            dlttemp = dlttemp->next;
+            dtemp=dtemp->next;
         }
-        struct node *temp = first, *del = NULL;
-        if (first->data == smallest)
+        printf("%d",smallest);
+        struct node *temp=first,*del=NULL;
+        if(first->data==smallest)
         {
-            del = first;
-            first = first->next;
+            del=first;
+            first=first->next;
             free(del);
-            printf("Element is deleted\n");
         }
         else
         {
-            while (temp != NULL)
+            while(temp->next!=NULL & temp->next->data!=smallest)
             {
-                if (temp->next != NULL && temp->next->data == smallest)
-                {
-                    del = temp->next;
-                    temp->next = temp->next->next;
-                    free(del);
-                    printf("Element is deleted\n");
-                    break;
-                }
-                temp = temp->next;
+              temp=temp->next;
             }
+            if(temp->next!=NULL)
+            {
+                del=temp->next;
+                temp->next=temp->next->next;
+                free(del);
+              //  break;
+            }
+            else
+            printf("mot");
         }
     }
 }
-
 void search(int data)
 {
-    struct node *temp = first;
-    int c = 0;
-    while (temp != NULL)
+    struct node *temp=first;
+    int c=0;
+    while(temp->next!=NULL&&temp->data!=data)
     {
-        if (temp->data == data)
-        {
-            printf("Element found at position %d\n", c);
-            return;
-        }
-        temp = temp->next;
+        temp=temp->next;
         c++;
     }
-    printf("The element is not found\n");
+    if(temp->data==data)
+    {
+        printf("foundt%d",c);
+    }
 }
-
 int main()
 {
     int choice;
@@ -341,21 +333,21 @@ int main()
 
         case 7:
             printf("Delete an element at a particular index\n");
-            printf("Enter the element to be deleted from the user: ");
+            printf("Enter the index to be deleted from the user: ");
             scanf("%d", &data);
-            deleteindex(data);
+          deleteindex(data);
             break;
 
         case 8:
             printf("Delete smallest\n");
-            deletesmall();
+         deletesmall();
             break;
 
         case 9:
             printf("Search for an element\n");
             printf("Enter the element to be searched: ");
             scanf("%d", &data);
-            search(data);
+          search(data);
             break;
         }
 
@@ -363,5 +355,4 @@ int main()
         scanf(" %c", &c);
     } while (c == 'y');
 
-    return 0;
 }
