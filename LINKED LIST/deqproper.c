@@ -1,3 +1,4 @@
+// without init 
 #include <stdio.h>
 #include <stdlib.h>
 
