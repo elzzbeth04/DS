@@ -69,7 +69,7 @@ public class Main {
                     f3.write(students[i].toString());
                 }
             }
-    f3.close();
+            f3.close();
             f.close();
             scanner.close();
         } catch (IOException e) {

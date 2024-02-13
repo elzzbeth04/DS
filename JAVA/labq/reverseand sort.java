@@ -42,7 +42,8 @@ public class Main {
 
             // Print the number of words in the file
             int wordCount = 0;
-            BufferedReader fileReader = new BufferedReader(new FileReader(fileName));
+            FileReader fr=new FileReader(fileName);
+            BufferedReader fileReader = new BufferedReader(fr);
             String line;
 
             while ((line = fileReader.readLine()) != null) {
