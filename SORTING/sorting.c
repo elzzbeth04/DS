@@ -85,6 +85,41 @@ int partition(int A[], int low, int high) {
     A[low] = temp;
     return j;
 }
+void heapify(int a[],int n,int i)
+{
+    int large=i;
+    int l=2*i+1;
+    int r=2*i+2;
+    if(l<n && a[l]>a[large])
+    {
+        large=l;
+    }
+     if(r<n && a[r]>a[large])
+    {
+        large=r;
+    }
+    if(large!=i)
+    {
+        int t=a[large];
+        a[large]=a[i];
+        a[i]=temp;
+    }
+    heapify(a,n,large);
+}
+void heapSort(int a[],int n)
+{
+    for(i=n/2;i>=0;i--)
+    {
+        heapify(a,n,i);
+    }
+    for(i=n-1;i>=0;i--)
+    {
+        int temp=a[0];
+        a[0]=a[i];
+        a[i]=temp;
+        heapify(a,i,0);
+    }
+}
 
 // Function to implement Quick Sort
 void Quicksort(int A[], int low, int high) {
@@ -94,6 +129,7 @@ void Quicksort(int A[], int low, int high) {
         Quicksort(A, j + 1, high);
     }
 }
+
 
 // Function to print the array
 void printArray(int a[100], int n) {

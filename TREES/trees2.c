@@ -5,8 +5,6 @@ struct node{
     struct node *left;
     struct node *right;
 };
-int rear =-1,front=-1;
-struct node *queue[20];
 struct node *create(int v)
 {
     struct node *newnode=(struct node*)malloc(sizeof(struct node));
@@ -91,48 +89,6 @@ void inorder(struct node *root)
     
 }
 
-
-void enqueue(struct node *root)
-{
-    if(front==-1)
-    {
-        front=0;
-       queue[++rear]=root;
-       
-    }
-    else
-    queue[++rear]=root;
-}
-struct node *dequeue()
-{
-    struct node *temp;
-    temp=queue[front];
-    if(front==rear)
-    {
-        front=rear=-1;
-        
-    }
-    else front=front+1;
-    
-  return temp;  
-}
-void levelorder(struct node *root)
-{
-     struct node *temp;
-    if(root==NULL)
-    return;
-    enqueue(root);
-    while(front!=-1)
-    {
-       temp=dequeue();
-        printf("%d\t",temp->data);
-        if(temp->left!=NULL)
-        enqueue(temp->left);
-        if(temp->right!=NULL)
-        enqueue(temp->right);
-        
-    }
-}
 void preorder(struct node *root)
 {
     if(root!=NULL)
@@ -167,10 +123,8 @@ void main()
    preorder(root);
    printf("\npostorder");
    postorder(root);
-   printf("\ninorder\t");
+   printf("\ninorder");
    inorder(root);
-   printf("\n");
-   levelorder(root);
   printf("\nenter val to delete");
     scanf("%d",&d);
    
@@ -182,7 +136,6 @@ void main()
    postorder(root);
    printf("\ninorder");
    inorder(root);
-   
    
    
 }

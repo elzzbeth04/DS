@@ -44,27 +44,40 @@ void infix_to_postfix(char infix[], char postfix[]) {
     int j = 0;
 
     while (infix[i] != '\0') {
-        if (infix[i] >= 'a' && infix[i] <= 'z') {
+
+        if (infix[i] >= 'a' && infix[i] <= 'z')
+         {
             postfix[j++] = infix[i++];
-        } else if (is_operator(infix[i])) {
-            while (top != -1 && precedence(stack[top]) >= precedence(infix[i])) {
-                postfix[j++] = pop();
-            }
-            push(infix[i++]);
-        } else if (infix[i] == '(') {
-            push(infix[i++]);
-        } else if (infix[i] == ')') {
-            while (top != -1 && stack[top] != '(') {
-                postfix[j++] = pop();
-            }
-            if (top != -1 && stack[top] == '(') {
+            } 
+            else if (is_operator(infix[i])) 
+            {
+                  while (top != -1 && precedence(stack[top]) >= precedence(infix[i]))
+                   {
+                        postfix[j++] = pop();
+                    }
+                push(infix[i++]);
+            } 
+        else if (infix[i] == '(')
+         {
+              push(infix[i++]);
+            } 
+            else if (infix[i] == ')')
+             {
+                while (top != -1 && stack[top] != '(') 
+                {
+                    postfix[j++] = pop();
+                }
+                if (top != -1 && stack[top] == '(') 
+                {
                 pop();
-            }
+                }
             i++;
-        } else {
+            }
+         else
+          {
             printf("Invalid character in infix expression\n");
             return;
-        }
+            }
     }
 
     while (top != -1) {

@@ -31,35 +31,40 @@ void insert(char c)
         
     }
 }
-int ispal()
-{
-    struct node *h=head;
-    struct node *t=tail;
-    while(h!=NULL&& t!=NULL)
-    {
-        if(h->data != t->data)
-        {
-            return 0;
-        }
-        t=t->prev;
-        h=h->next;
-        
-    }
-    return 1;
-}
+
 int main()
 {
     char str[10];
-    printf("input the string");
+    int c;
+    
+    printf("input the string:\n\t\t");
     scanf("%s",str);
     for(int i=0;i<strlen(str);i++)
     {
         insert(str[i]);
     }
-    if(ispal())
+    for(int i=0;i<strlen(str);i++)
     {
-        printf("palindrome");
+        struct node *temp=head;
+        int c=0;
+        while(temp!=NULL)
+        {
+              
+            if(temp->data==str[i])
+            {
+            c++;
+            }
+            temp=temp->next;
+        } 
+        printf("\n\t\toccurence of %c in %s is %d",str[i],str,c);
+        // while(head!=NULL)
+        // {
+        //     struct node *ptr=head;
+        //     head=head->next;
+        //     free(temp);
+        // }
+        // head=NULL;
+       
     }
-    else 
-    printf("not");
+   
 }
